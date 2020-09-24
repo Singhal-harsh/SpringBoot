@@ -1,4 +1,4 @@
-package com.citiarb.springboot.entity;
+package com.citi.ArbApplication.Component;
 
 import org.springframework.stereotype.Component;
 

@@ -1,13 +1,13 @@
-package com.citiarb.springboot.Controller;
+package com.citi.ArbApplication.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.citiarb.springboot.Service.ArbServiceImpl;
-import com.citiarb.springboot.entity.Arbitrage;
-import com.citiarb.springboot.entity.CalculatedArbitrage;
+import com.citi.ArbApplication.Component.Arbitrage;
+import com.citi.ArbApplication.Component.CalculatedArbitrage;
+import com.citi.ArbApplication.Service.ArbServiceImpl;
 
 @RestController  
 public class ArbitrageController {

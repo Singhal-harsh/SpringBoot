@@ -1,6 +1,6 @@
-package com.citiarb.springboot.Service;
+package com.citi.ArbApplication.Service;
 
-import com.citiarb.springboot.entity.Arbitrage;
+import com.citi.ArbApplication.Component.Arbitrage;
 
 public interface ArbService {
 	

@@ -1,11 +1,11 @@
-package com.citiarb.springboot.Service;
+package com.citi.ArbApplication.Service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.citiarb.springboot.entity.Arbitrage;
-import com.citiarb.springboot.entity.CalculatedArbitrage;
+import com.citi.ArbApplication.Component.Arbitrage;
+import com.citi.ArbApplication.Component.CalculatedArbitrage;
 
 @Service
 public class ArbServiceImpl {
