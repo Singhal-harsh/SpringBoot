@@ -1,4 +1,4 @@
-package com.citi.springboot.arbproject;
+package com.citi.ArbApplication;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
