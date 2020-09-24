@@ -15,6 +15,7 @@ public class Arbitrage {
 	private double rev_arb_quantity;
 	private double time_months;
 
+
 	public Arbitrage() {
 	};
 
@@ -131,6 +132,8 @@ public class Arbitrage {
 	public void setTime_months(double time_months) {
 		this.time_months = time_months;
 	}
+	
+
 	
 	@Override
 	public String toString() {

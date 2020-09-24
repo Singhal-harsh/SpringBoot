@@ -4,8 +4,8 @@ import com.citiarb.springboot.entity.Arbitrage;
 
 public interface ArbService {
 	
-	public double sixMonthAmountFwd(Arbitrage arb);
-	public double investAmountFwd(Arbitrage arb);
+	public void sixMonthAmountFwd(Arbitrage arb);
+	public void investAmountFwd(Arbitrage arb);
 	
 
 }
