@@ -1,4 +1,4 @@
-package com.citi.ArbApplication.Service;
+package com.citi.ArbApplication.Service.Implementation;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,9 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.citi.ArbApplication.Component.Arbitrage;
 import com.citi.ArbApplication.Component.CalculatedArbitrage;
+import com.citi.ArbApplication.Service.ArbService;
 
 @Service
-public class ArbServiceImpl {
+public class ArbServiceImpl implements ArbService {
 
 	@Autowired
     public CalculatedArbitrage calculatedArbitrage;
