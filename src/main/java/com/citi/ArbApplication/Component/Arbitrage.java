@@ -15,17 +15,14 @@ public class Arbitrage {
 	private double interest_rate_curr2_ask;
 	private double transaction_cost;
 	private double fwd_arb_quantity;
-	private double rev_arb_quantity;
 	private double time_months;
-
 
 	public Arbitrage() {
 	};
 
 	public Arbitrage(double spot_bid, double spot_ask, double forward_bid, double forward_ask,
 			double interest_rate_curr1_bid, double interest_rate_curr1_ask, double interest_rate_curr2_bid,
-			double interest_rate_curr2_ask, double transaction_cost, double fwd_arb_quantity, double rev_arb_quantity,
-			double time_months) {
+			double interest_rate_curr2_ask, double transaction_cost, double fwd_arb_quantity, double time_months) {
 		this.spot_bid = spot_bid;
 		this.spot_ask = spot_ask;
 		this.forward_bid = forward_bid;
@@ -36,7 +33,6 @@ public class Arbitrage {
 		this.interest_rate_curr2_ask = interest_rate_curr2_ask;
 		this.transaction_cost = transaction_cost;
 		this.fwd_arb_quantity = fwd_arb_quantity;
-		this.rev_arb_quantity = rev_arb_quantity;
 		this.time_months = time_months;
 	}
 
@@ -120,14 +116,6 @@ public class Arbitrage {
 		this.fwd_arb_quantity = fwd_arb_quantity;
 	}
 
-	public double getRev_arb_quantity() {
-		return rev_arb_quantity;
-	}
-
-	public void setRev_arb_quantity(double rev_arb_quantity) {
-		this.rev_arb_quantity = rev_arb_quantity;
-	}
-
 	public double getTime_months() {
 		return time_months;
 	}
@@ -135,9 +123,7 @@ public class Arbitrage {
 	public void setTime_months(double time_months) {
 		this.time_months = time_months;
 	}
-	
 
-	
 	@Override
 	public String toString() {
 		return "Arbitrage [spot_bid=" + spot_bid + ", spot_ask=" + spot_ask + ", forward_bid=" + forward_bid
@@ -145,7 +131,7 @@ public class Arbitrage {
 				+ ", interest_rate_curr1_ask=" + interest_rate_curr1_ask + ", interest_rate_curr2_bid="
 				+ interest_rate_curr2_bid + ", interest_rate_curr2_ask=" + interest_rate_curr2_ask
 				+ ", transaction_cost=" + transaction_cost + ", fwd_arb_quantity=" + fwd_arb_quantity
-				+ ", rev_arb_quantity=" + rev_arb_quantity + ", time_months=" + time_months + "]";
+				+ ", rev_arb_quantity=" + ", time_months=" + time_months + "]";
 	}
 
 }

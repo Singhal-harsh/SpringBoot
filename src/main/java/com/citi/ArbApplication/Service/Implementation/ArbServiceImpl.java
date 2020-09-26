@@ -23,33 +23,33 @@ public class ArbServiceImpl implements ArbService {
 	private double rev_arb_invest_amount;
 	private double rev_arb_invest_amount_Curr2;
 
-	public CalculatedArbitrage sixMonthAmountFwd(Arbitrage arb) {
-
+	public void normalArbitrageCalc(Arbitrage arb) {
 		fwd_arb_amount = arb.getFwd_arb_quantity()
 				+ (arb.getFwd_arb_quantity()) * ((arb.getInterest_rate_curr2_ask() * arb.getTime_months() * 0.01) / 12)
 				+ arb.getTransaction_cost();
+
 		fwd_arb_invest_amount_Curr1 = (arb.getFwd_arb_quantity() / arb.getSpot_ask())
 				* ((arb.getInterest_rate_curr1_bid() * arb.getTime_months() * 0.01) / 12)
 				+ (arb.getFwd_arb_quantity() / arb.getSpot_ask());
+
 		fwd_arb_invest_amount = fwd_arb_invest_amount_Curr1 * arb.getForward_bid();
-		
-		
-		
-		rev_arb_amount = arb.getRev_arb_quantity()
+	}
+
+	public void reverseArbitrageCalc(Arbitrage arb) {
+		rev_arb_amount = ((arb.getFwd_arb_quantity() / arb.getSpot_ask())
 				* (1 + arb.getTime_months() * 0.01 * arb.getInterest_rate_curr1_ask() / 12)
-				+ arb.getTransaction_cost();
-		
-		
-		rev_arb_invest_amount_Curr2 = (arb.getRev_arb_quantity() * arb.getSpot_bid())
-				* (1 + ((arb.getTime_months() * 0.01 * arb.getInterest_rate_curr2_bid()) / 12));// Amount after
+				+ arb.getTransaction_cost() / arb.getSpot_ask()) * arb.getForward_bid();
 
-		rev_arb_invest_amount = rev_arb_invest_amount_Curr2 / arb.getForward_ask();
-		
-		
-		
-		
+		rev_arb_invest_amount_Curr2 = (arb.getFwd_arb_quantity())
+				* (1 + ((arb.getInterest_rate_curr2_bid() * arb.getTime_months() * 0.01) / 12));
 
-		
+		rev_arb_invest_amount = rev_arb_invest_amount_Curr2;
+	}
+
+	public CalculatedArbitrage checkArbitrage(Arbitrage arb) {
+		this.normalArbitrageCalc(arb);
+		this.reverseArbitrageCalc(arb);
+
 		calculatedArbitrage.setFwd_arb_amount(fwd_arb_amount);
 		calculatedArbitrage.setFwd_arb_invest_amount_Curr1(fwd_arb_invest_amount_Curr1);
 		calculatedArbitrage.setFwd_arb_invest_amount(fwd_arb_invest_amount);
@@ -60,21 +60,20 @@ public class ArbServiceImpl implements ArbService {
 		profit_loss_rev = calculatedArbitrage.getRev_arb_invest_amount() - calculatedArbitrage.getRev_arb_amount();
 		calculatedArbitrage.setProfit_loss_fwd(profit_loss_fwd);
 		calculatedArbitrage.setProfit_loss_rev(profit_loss_rev);
-		
-		if(profit_loss_fwd > 0) {
+		calculatedArbitrage.setArbitrage(arb);
+
+		if (profit_loss_fwd > 0) {
 			calculatedArbitrage.setFwdArbitrage(true);
-		}else
+		} else
 			calculatedArbitrage.setFwdArbitrage(false);
-		
-		if(profit_loss_rev > 0) {
+
+		if (profit_loss_rev > 0) {
 			calculatedArbitrage.setRevArbitrage(true);
-		}else 
+		} else
 			calculatedArbitrage.setRevArbitrage(false);
-		
-		
+
 		return calculatedArbitrage;
-		}
-	
+	}
 	   
 
 	/*public void investAmountFwd(Arbitrage arb) {

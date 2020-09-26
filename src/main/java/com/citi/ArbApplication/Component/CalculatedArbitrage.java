@@ -15,6 +15,7 @@ public class CalculatedArbitrage {
 	private double rev_arb_invest_amount_Curr2;
 	private boolean isFwdArbitrage;
 	private boolean isRevArbitrage;
+	private Arbitrage arbitrage;
 
 	public CalculatedArbitrage() {
 
@@ -22,7 +23,7 @@ public class CalculatedArbitrage {
 
 	public CalculatedArbitrage(double fwd_arb_amount, double fwd_arb_invest_amount, double fwd_arb_invest_amount_Curr1,
 			double profit_loss_fwd, double profit_loss_rev, double rev_arb_amount, double rev_arb_invest_amount,
-			double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage, boolean isRevArbitrage) {
+			double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage, boolean isRevArbitrage, Arbitrage arbitrage) {
 		super();
 		this.fwd_arb_amount = fwd_arb_amount;
 		this.fwd_arb_invest_amount = fwd_arb_invest_amount;
@@ -34,6 +35,16 @@ public class CalculatedArbitrage {
 		this.rev_arb_invest_amount_Curr2 = rev_arb_invest_amount_Curr2;
 		this.isFwdArbitrage = isFwdArbitrage;
 		this.isRevArbitrage = isRevArbitrage;
+		this.arbitrage = arbitrage;
+		
+	}
+
+	public Arbitrage getArbitrage() {
+		return arbitrage;
+	}
+
+	public void setArbitrage(Arbitrage arbitrage) {
+		this.arbitrage = arbitrage;
 	}
 
 	public double getFwd_arb_amount() {
