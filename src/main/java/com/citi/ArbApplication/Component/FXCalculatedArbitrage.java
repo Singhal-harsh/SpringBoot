@@ -3,7 +3,7 @@ package com.citi.ArbApplication.Component;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CalculatedArbitrage {
+public class FXCalculatedArbitrage {
 
 	private double fwd_arb_amount;
 	private double fwd_arb_invest_amount;
@@ -15,15 +15,15 @@ public class CalculatedArbitrage {
 	private double rev_arb_invest_amount_Curr2;
 	private boolean isFwdArbitrage;
 	private boolean isRevArbitrage;
-	private Arbitrage arbitrage;
+	private FXArbitrage arbitrage;
 
-	public CalculatedArbitrage() {
+	public FXCalculatedArbitrage() {
 
 	}
 
-	public CalculatedArbitrage(double fwd_arb_amount, double fwd_arb_invest_amount, double fwd_arb_invest_amount_Curr1,
+	public FXCalculatedArbitrage(double fwd_arb_amount, double fwd_arb_invest_amount, double fwd_arb_invest_amount_Curr1,
 			double profit_loss_fwd, double profit_loss_rev, double rev_arb_amount, double rev_arb_invest_amount,
-			double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage, boolean isRevArbitrage, Arbitrage arbitrage) {
+			double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage, boolean isRevArbitrage, FXArbitrage arbitrage) {
 		super();
 		this.fwd_arb_amount = fwd_arb_amount;
 		this.fwd_arb_invest_amount = fwd_arb_invest_amount;
@@ -39,11 +39,11 @@ public class CalculatedArbitrage {
 		
 	}
 
-	public Arbitrage getArbitrage() {
+	public FXArbitrage getArbitrage() {
 		return arbitrage;
 	}
 
-	public void setArbitrage(Arbitrage arbitrage) {
+	public void setArbitrage(FXArbitrage arbitrage) {
 		this.arbitrage = arbitrage;
 	}
 

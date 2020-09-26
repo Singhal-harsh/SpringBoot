@@ -3,7 +3,7 @@ package com.citi.ArbApplication.Component;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Arbitrage {
+public class FXArbitrage {
 
 	private double spot_bid;
 	private double spot_ask;
@@ -17,10 +17,10 @@ public class Arbitrage {
 	private double fwd_arb_quantity;
 	private double time_months;
 
-	public Arbitrage() {
+	public FXArbitrage() {
 	};
 
-	public Arbitrage(double spot_bid, double spot_ask, double forward_bid, double forward_ask,
+	public FXArbitrage(double spot_bid, double spot_ask, double forward_bid, double forward_ask,
 			double interest_rate_curr1_bid, double interest_rate_curr1_ask, double interest_rate_curr2_bid,
 			double interest_rate_curr2_ask, double transaction_cost, double fwd_arb_quantity, double time_months) {
 		this.spot_bid = spot_bid;

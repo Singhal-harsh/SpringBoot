@@ -4,15 +4,15 @@ package com.citi.ArbApplication.Service.Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.citi.ArbApplication.Component.Arbitrage;
-import com.citi.ArbApplication.Component.CalculatedArbitrage;
+import com.citi.ArbApplication.Component.FXArbitrage;
+import com.citi.ArbApplication.Component.FXCalculatedArbitrage;
 import com.citi.ArbApplication.Service.ArbService;
 
 @Service
 public class ArbServiceImpl implements ArbService {
 
 	@Autowired
-    public CalculatedArbitrage calculatedArbitrage;
+    public FXCalculatedArbitrage calculatedArbitrage;
 
 	private double fwd_arb_amount;
 	private double fwd_arb_invest_amount;
@@ -23,7 +23,7 @@ public class ArbServiceImpl implements ArbService {
 	private double rev_arb_invest_amount;
 	private double rev_arb_invest_amount_Curr2;
 
-	public void normalArbitrageCalc(Arbitrage arb) {
+	public void normalArbitrageCalc(FXArbitrage arb) {
 		fwd_arb_amount = arb.getFwd_arb_quantity()
 				+ (arb.getFwd_arb_quantity()) * ((arb.getInterest_rate_curr2_ask() * arb.getTime_months() * 0.01) / 12)
 				+ arb.getTransaction_cost();
@@ -35,7 +35,7 @@ public class ArbServiceImpl implements ArbService {
 		fwd_arb_invest_amount = fwd_arb_invest_amount_Curr1 * arb.getForward_bid();
 	}
 
-	public void reverseArbitrageCalc(Arbitrage arb) {
+	public void reverseArbitrageCalc(FXArbitrage arb) {
 		rev_arb_amount = ((arb.getFwd_arb_quantity() / arb.getSpot_ask())
 				* (1 + arb.getTime_months() * 0.01 * arb.getInterest_rate_curr1_ask() / 12)
 				+ arb.getTransaction_cost() / arb.getSpot_ask()) * arb.getForward_bid();
@@ -46,7 +46,7 @@ public class ArbServiceImpl implements ArbService {
 		rev_arb_invest_amount = rev_arb_invest_amount_Curr2;
 	}
 
-	public CalculatedArbitrage checkArbitrage(Arbitrage arb) {
+	public FXCalculatedArbitrage checkArbitrage(FXArbitrage arb) {
 		this.normalArbitrageCalc(arb);
 		this.reverseArbitrageCalc(arb);
 

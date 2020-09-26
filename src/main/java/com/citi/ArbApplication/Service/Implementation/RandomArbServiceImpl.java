@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.citi.ArbApplication.Component.Arbitrage;
+import com.citi.ArbApplication.Component.FXArbitrage;
 import com.citi.ArbApplication.Service.RandomArbService;
 
 @Service
@@ -15,9 +15,9 @@ public class RandomArbServiceImpl implements RandomArbService {
 	public RandomGenerationServiceImpl random;
 
 	@Autowired
-	public Arbitrage arbitrage;
+	public FXArbitrage arbitrage;
 
-	public Arbitrage randomGeneration() throws InterruptedException {
+	public FXArbitrage randomGeneration() throws InterruptedException {
 
 		ArrayList<Object> RandomgeneratedArray = new ArrayList<Object>();
 		RandomgeneratedArray = random.randomGeneration();

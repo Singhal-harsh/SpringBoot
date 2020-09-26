@@ -1,8 +1,8 @@
 package com.citi.ArbApplication.Service;
 
-import com.citi.ArbApplication.Component.Arbitrage;
+import com.citi.ArbApplication.Component.FXArbitrage;
 
 public interface RandomArbService {
-	public Arbitrage randomGeneration() throws InterruptedException;
+	public FXArbitrage randomGeneration() throws InterruptedException;
 
 }
