@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FXCalculatedArbitrage {
 
+	private int id;
 	private double fwd_arb_amount;
 	private double fwd_arb_invest_amount;
 	private double fwd_arb_invest_amount_Curr1;
@@ -21,10 +22,12 @@ public class FXCalculatedArbitrage {
 
 	}
 
-	public FXCalculatedArbitrage(double fwd_arb_amount, double fwd_arb_invest_amount, double fwd_arb_invest_amount_Curr1,
-			double profit_loss_fwd, double profit_loss_rev, double rev_arb_amount, double rev_arb_invest_amount,
-			double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage, boolean isRevArbitrage, FXArbitrage arbitrage) {
-		super();
+	public FXCalculatedArbitrage(int id, double fwd_arb_amount, double fwd_arb_invest_amount,
+			double fwd_arb_invest_amount_Curr1, double profit_loss_fwd, double profit_loss_rev, double rev_arb_amount,
+			double rev_arb_invest_amount, double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage,
+			boolean isRevArbitrage, FXArbitrage arbitrage) {
+
+		this.id = id;
 		this.fwd_arb_amount = fwd_arb_amount;
 		this.fwd_arb_invest_amount = fwd_arb_invest_amount;
 		this.fwd_arb_invest_amount_Curr1 = fwd_arb_invest_amount_Curr1;
@@ -36,7 +39,15 @@ public class FXCalculatedArbitrage {
 		this.isFwdArbitrage = isFwdArbitrage;
 		this.isRevArbitrage = isRevArbitrage;
 		this.arbitrage = arbitrage;
-		
+
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public FXArbitrage getArbitrage() {

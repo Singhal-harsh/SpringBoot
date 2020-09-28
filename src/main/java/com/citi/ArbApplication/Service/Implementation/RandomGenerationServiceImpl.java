@@ -51,7 +51,7 @@ public class RandomGenerationServiceImpl {
 		double future_arb_quantity = CashAndCarryConstant.getFutureArbQuantityList().get((rand.nextInt(CashAndCarryConstant.getFutureArbQuantityList().size())));
 		
 		arr.add(future_arb_quantity);
-		arr.add(((double) arr.get(6)) * (CashAndCarryConstant.getTransactioncostpercent()));
+		arr.add((CashAndCarryConstant.getTransactioncostpercent()));
 		
 		double time_months = CashAndCarryConstant.getTimeMonths().get((rand.nextInt(CashAndCarryConstant.getTimeMonths().size())));
 		arr.add(time_months);

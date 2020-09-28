@@ -13,7 +13,7 @@ public class ArbServiceImpl implements ArbService {
 
 	@Autowired
     public FXCalculatedArbitrage calculatedArbitrage;
-
+	private static int id = 1;
 	private double fwd_arb_amount;
 	private double fwd_arb_invest_amount;
 	private double fwd_arb_invest_amount_Curr1;
@@ -39,21 +39,22 @@ public class ArbServiceImpl implements ArbService {
 	
 	@Override
 	public void reverseArbitrageCalc(FXArbitrage arb) {
-		rev_arb_amount = ((arb.getFwd_arb_quantity() / arb.getSpot_ask())
+		rev_arb_amount = (arb.getFwd_arb_quantity()
 				* (1 + arb.getTime_months() * 0.01 * arb.getInterest_rate_curr1_ask() / 12)
-				+ arb.getTransaction_cost() / arb.getSpot_ask()) * arb.getForward_bid();
+				+ arb.getTransaction_cost());
 
-		rev_arb_invest_amount_Curr2 = (arb.getFwd_arb_quantity())
+		rev_arb_invest_amount_Curr2 = (arb.getFwd_arb_quantity()*arb.getSpot_bid())
 				* (1 + ((arb.getInterest_rate_curr2_bid() * arb.getTime_months() * 0.01) / 12));
 
-		rev_arb_invest_amount = rev_arb_invest_amount_Curr2;
+		rev_arb_invest_amount = rev_arb_invest_amount_Curr2 / arb.getForward_ask();
 	}
 
 	@Override
 	public FXCalculatedArbitrage checkArbitrage(FXArbitrage arb) {
 		this.normalArbitrageCalc(arb);
 		this.reverseArbitrageCalc(arb);
-
+		
+		calculatedArbitrage.setId(ArbServiceImpl.id++);
 		calculatedArbitrage.setFwd_arb_amount(fwd_arb_amount);
 		calculatedArbitrage.setFwd_arb_invest_amount_Curr1(fwd_arb_invest_amount_Curr1);
 		calculatedArbitrage.setFwd_arb_invest_amount(fwd_arb_invest_amount);

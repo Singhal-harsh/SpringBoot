@@ -12,7 +12,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 
 	@Autowired
 	public CashandCarryCalculatedArbitrage cashAndCarryCalculated;
-
+	private static int id;
 	private double future_arb_amount;
 	private double profit_loss_fwd;
 	private double profit_loss_rev;
@@ -45,6 +45,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 	public CashandCarryCalculatedArbitrage checkArbitrage(CashAndCarryArbitrage cashAndCarryArbitrage) {
 		if (cashAndCarryArbitrage.getSpot_ask() < cashAndCarryArbitrage.getFuture_bid()) {
 			this.normalCashArbCalc(cashAndCarryArbitrage);
+			cashAndCarryCalculated.setId(CashAndCarryServiceImpl.id++);
 			cashAndCarryCalculated.setFuture_arb_amount(future_arb_amount);
 			cashAndCarryCalculated.setProfit_loss_fwd(profit_loss_fwd);
 			cashAndCarryCalculated.setRev_arb_amount(0.00);
@@ -59,6 +60,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 		}
 		else if (cashAndCarryArbitrage.getFuture_ask() < cashAndCarryArbitrage.getSpot_bid()) {
 			this.reverseCashArbCalc(cashAndCarryArbitrage);
+			cashAndCarryCalculated.setId(CashAndCarryServiceImpl.id++);
 			cashAndCarryCalculated.setFuture_arb_amount(0.00);
 			cashAndCarryCalculated.setProfit_loss_fwd(0.00);
 			cashAndCarryCalculated.setRev_arb_amount(rev_arb_amount);

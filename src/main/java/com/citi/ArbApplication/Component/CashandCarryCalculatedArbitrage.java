@@ -4,7 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CashandCarryCalculatedArbitrage {
-
+	
+	private int id;
 	private double future_arb_amount;
 	private double profit_loss_fwd;
 	private double profit_loss_rev;
@@ -17,9 +18,9 @@ public class CashandCarryCalculatedArbitrage {
 
 	}
 
-	public CashandCarryCalculatedArbitrage(double future_arb_amount, double profit_loss_fwd, double profit_loss_rev,
+	public CashandCarryCalculatedArbitrage(int id, double future_arb_amount, double profit_loss_fwd, double profit_loss_rev,
 			double rev_arb_amount, boolean isFwdArbitrage, boolean isRevArbitrage, CashAndCarryArbitrage arbitrage) {
-		super();
+		this.id = id;
 		this.future_arb_amount = future_arb_amount;
 		this.profit_loss_fwd = profit_loss_fwd;
 		this.profit_loss_rev = profit_loss_rev;
@@ -28,7 +29,15 @@ public class CashandCarryCalculatedArbitrage {
 		this.isRevArbitrage = isRevArbitrage;
 		this.arbitrage = arbitrage;
 	}
+	
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 	public double getFuture_arb_amount() {
 		return future_arb_amount;
 	}

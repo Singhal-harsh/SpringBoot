@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class CashAndCarryConstant {
 
-	private static final double spot_bid_range = 0.5;
-	private static final double spot_bid_min = 3095.13;
-	private static final double future_bid_range = 0.5;
-	private static final double future_bid_min = 3152.1;
+	private static final double spot_bid_range = 100;
+	private static final double spot_bid_min = 3050;
+	private static final double future_bid_range = 100;
+	private static final double future_bid_min = 3050;
 	private static final double interest_rate_bid_range = 0.5;
 	private static final double interest_rate_bid_min = 4.9;
 	private static final double range = 0.15;
 	private static final double minVal = 0.01;
-	private static final double transactionCostPercent = 0.025;
+	private static final double transactionCostPercent = 0.5;
 
 	
 
@@ -26,7 +26,7 @@ public class CashAndCarryConstant {
 
 		future_arb_quantity_list.add(500.0);
 		future_arb_quantity_list.add(1000.0);
-		future_arb_quantity_list.add(5000.0);
+		future_arb_quantity_list.add(1500.0);
 		return future_arb_quantity_list;
 	}
 	
