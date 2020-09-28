@@ -1,5 +1,8 @@
 package com.citi.ArbApplication.Component;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CashAndCarryArbitrage {
 
 	private double spot_bid;
@@ -7,25 +10,29 @@ public class CashAndCarryArbitrage {
 	private double future_bid;
 	private double future_ask;
 	private double interest_rate_bid;
-	private double interst_rate_ask;
+	private double interest_rate_ask;
 	private double time_months;
 	private double transaction_cost;
+	private double quantity;
 
 	public CashAndCarryArbitrage() {
 
 	}
 
+	
+
 	public CashAndCarryArbitrage(double spot_bid, double spot_ask, double future_bid, double future_ask,
-			double interest_rate_bid, double interst_rate_ask, double time_months, double transaction_cost) {
+			double interest_rate_bid, double interest_rate_ask, double time_months, double transaction_cost, double quantity) {
 		super();
 		this.spot_bid = spot_bid;
 		this.spot_ask = spot_ask;
 		this.future_bid = future_bid;
 		this.future_ask = future_ask;
 		this.interest_rate_bid = interest_rate_bid;
-		this.interst_rate_ask = interst_rate_ask;
+		this.interest_rate_ask = interest_rate_ask;
 		this.time_months = time_months;
 		this.transaction_cost = transaction_cost;
+		this.quantity= quantity;
 	}
 
 	public double getSpot_bid() {
@@ -68,12 +75,12 @@ public class CashAndCarryArbitrage {
 		this.interest_rate_bid = interest_rate_bid;
 	}
 
-	public double getInterst_rate_ask() {
-		return interst_rate_ask;
+	public double getInterest_rate_ask() {
+		return interest_rate_ask;
 	}
 
-	public void setInterst_rate_ask(double interst_rate_ask) {
-		this.interst_rate_ask = interst_rate_ask;
+	public void setInterest_rate_ask(double interest_rate_ask) {
+		this.interest_rate_ask = interest_rate_ask;
 	}
 
 	public double getTime_months() {
@@ -91,12 +98,25 @@ public class CashAndCarryArbitrage {
 	public void setTransaction_cost(double transaction_cost) {
 		this.transaction_cost = transaction_cost;
 	}
+	
+	public double getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
+
 
 	@Override
 	public String toString() {
 		return "CashAndCarryArbitrage [spot_bid=" + spot_bid + ", spot_ask=" + spot_ask + ", future_bid=" + future_bid
 				+ ", future_ask=" + future_ask + ", interest_rate_bid=" + interest_rate_bid + ", interst_rate_ask="
-				+ interst_rate_ask + ", time_months=" + time_months + ", transaction_cost=" + transaction_cost + "]";
+				+ interest_rate_ask + ", time_months=" + time_months + ", transaction_cost=" + transaction_cost
+				+ ", quantity=" + quantity + "]";
 	}
+
+	
 
 }

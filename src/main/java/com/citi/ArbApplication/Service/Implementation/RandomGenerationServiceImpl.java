@@ -5,12 +5,13 @@ import java.util.Random;
 
 import org.springframework.stereotype.Service;
 
+import com.citi.ArbApplication.Component.CashAndCarryConstant;
 import com.citi.ArbApplication.Component.FxConstant;
 
 @Service
 public class RandomGenerationServiceImpl {
 
-	public ArrayList<Object> randomGeneration() {
+	public ArrayList<Object> randomFxGeneration() {
 		ArrayList<Object> arr = new ArrayList<Object>();
 		arr.add((Math.random() * FxConstant.getSpotBidRange()) + FxConstant.getSpotBidMin()); // spot_bid(1)
 		arr.add((Math.random() * FxConstant.getRange()) + (double) arr.get(0) + FxConstant.getMinval());// spot_ask(2)
@@ -27,11 +28,36 @@ public class RandomGenerationServiceImpl {
 		
 		arr.add(fwd_arb_quantity);// 9
 		
-
 		arr.add(((double) arr.get(8)) * (FxConstant.getTransactioncostpercent()));// transaction_cost(11)
+		
+		double time_months = FxConstant.getTimeMonths().get((rand.nextInt(FxConstant.getTimeMonths().size())));
+		arr.add(time_months);
 
-		//System.out.println("elements are : " + arr);
+	
 		return arr;
 	}
+	
+	public ArrayList<Object> randomCashGeneration(){
+		ArrayList<Object> arr = new ArrayList<Object>();
+		
+		arr.add((Math.random() * CashAndCarryConstant.getSpotBidRange()) + CashAndCarryConstant.getSpotBidMin());
+		arr.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arr.get(0) + CashAndCarryConstant.getMinval());
+		arr.add((Math.random() * CashAndCarryConstant.getFutureBidRange()) + CashAndCarryConstant.getFutureBidMin());
+		arr.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arr.get(2) + CashAndCarryConstant.getMinval());
+		arr.add((Math.random() * CashAndCarryConstant.getInterestRateBidRange()) + CashAndCarryConstant.getInterestRateBidMin());
+		arr.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arr.get(4) + CashAndCarryConstant.getMinval());
+		
+		Random rand = new Random();
+		double future_arb_quantity = CashAndCarryConstant.getFutureArbQuantityList().get((rand.nextInt(CashAndCarryConstant.getFutureArbQuantityList().size())));
+		
+		arr.add(future_arb_quantity);
+		arr.add(((double) arr.get(6)) * (CashAndCarryConstant.getTransactioncostpercent()));
+		
+		double time_months = CashAndCarryConstant.getTimeMonths().get((rand.nextInt(CashAndCarryConstant.getTimeMonths().size())));
+		arr.add(time_months);
+		return arr;
+	}
+	
+	
 
 }

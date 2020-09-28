@@ -29,6 +29,15 @@ public class FxConstant {
 		return fwd_arb_quantity_list;
 	}
 	
+	static List<Double> time_months = new ArrayList<Double>();
+	public static List<Double> getTimeMonths(){
+		
+		time_months.add((double) 3);
+		time_months.add((double) 6);
+		time_months.add((double) 12);
+		return time_months;
+	}
+	
 
 	public static double getMinval() {
 		return minVal;

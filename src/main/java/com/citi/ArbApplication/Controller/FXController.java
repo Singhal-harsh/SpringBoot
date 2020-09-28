@@ -31,7 +31,6 @@ public class FXController {
 	@PostMapping(value = "/userArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<FXCalculatedArbitrage> calculateArbitrage(@RequestBody FXArbitrage arbitrage){
-		System.out.println(arbitrage);
 		calculatedArbitrage = arbService.checkArbitrage(arbitrage);
 		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 		}
