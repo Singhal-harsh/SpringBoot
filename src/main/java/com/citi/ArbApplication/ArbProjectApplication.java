@@ -1,4 +1,4 @@
-package com.citi.springboot.arbproject;
+package com.citi.ArbApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +8,7 @@ public class ArbProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ArbProjectApplication.class, args);
+		
 	}
 
 }
