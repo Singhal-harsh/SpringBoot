@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CashAndCarryArbitrage {
-
+	private boolean mapping;
 	private double spot_bid;
 	private double spot_ask;
 	private double future_bid;
@@ -19,11 +19,11 @@ public class CashAndCarryArbitrage {
 
 	}
 
-	
-
-	public CashAndCarryArbitrage(double spot_bid, double spot_ask, double future_bid, double future_ask,
-			double interest_rate_bid, double interest_rate_ask, double time_months, double transaction_cost, double quantity) {
+	public CashAndCarryArbitrage(boolean mapping, double spot_bid, double spot_ask, double future_bid,
+			double future_ask, double interest_rate_bid, double interest_rate_ask, double time_months,
+			double transaction_cost, double quantity) {
 		super();
+		this.mapping = mapping;
 		this.spot_bid = spot_bid;
 		this.spot_ask = spot_ask;
 		this.future_bid = future_bid;
@@ -32,7 +32,15 @@ public class CashAndCarryArbitrage {
 		this.interest_rate_ask = interest_rate_ask;
 		this.time_months = time_months;
 		this.transaction_cost = transaction_cost;
-		this.quantity= quantity;
+		this.quantity = quantity;
+	}
+
+	public boolean isMapping() {
+		return mapping;
+	}
+
+	public void setMapping(boolean mapping) {
+		this.mapping = mapping;
 	}
 
 	public double getSpot_bid() {
@@ -98,7 +106,7 @@ public class CashAndCarryArbitrage {
 	public void setTransaction_cost(double transaction_cost) {
 		this.transaction_cost = transaction_cost;
 	}
-	
+
 	public double getQuantity() {
 		return quantity;
 	}
@@ -107,8 +115,6 @@ public class CashAndCarryArbitrage {
 		this.quantity = quantity;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "CashAndCarryArbitrage [spot_bid=" + spot_bid + ", spot_ask=" + spot_ask + ", future_bid=" + future_bid
@@ -116,7 +122,5 @@ public class CashAndCarryArbitrage {
 				+ interest_rate_ask + ", time_months=" + time_months + ", transaction_cost=" + transaction_cost
 				+ ", quantity=" + quantity + "]";
 	}
-
-	
 
 }

@@ -1,3 +1,4 @@
+
 package com.citi.ArbApplication.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,43 +11,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.citi.ArbApplication.Component.FXArbitrage;
-import com.citi.ArbApplication.Component.FXCalculatedArbitrage;
-import com.citi.ArbApplication.Service.ArbService;
+import com.citi.ArbApplication.Component.FRAArbitrage;
+import com.citi.ArbApplication.Component.FRACalculatedArbitrage;
+import com.citi.ArbApplication.Service.FRAService;
 import com.citi.ArbApplication.Service.RandomArbService;
 
 @CrossOrigin(origins="http://localhost:4200")
-@RestController  
-public class FXController {
+@RestController
+public class FRAController {
+	@Autowired
+	public FRAService fraService;
 	
 	@Autowired
-	public ArbService arbService;
-	
-	@Autowired
-	public FXCalculatedArbitrage calculatedArbitrage;
+	public FRACalculatedArbitrage calculatedArbitrage;
 	
 	@Autowired
 	public RandomArbService randomArbService;
 	
-	@PostMapping(value = "/userFxArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(value = "/userFRAArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-		public ResponseEntity<FXCalculatedArbitrage> calculateArbitrage(@RequestBody FXArbitrage arbitrage){
-		calculatedArbitrage = arbService.checkArbitrage(arbitrage);
+	public ResponseEntity<FRACalculatedArbitrage> calculateArbitrage(@RequestBody FRAArbitrage arbitrage){
+		calculatedArbitrage = fraService.checkArbitrage(arbitrage);
 		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 		}
 	
-	@GetMapping(value = "/randomFxArbitrage", produces = MediaType.APPLICATION_JSON_VALUE)
-	public FXCalculatedArbitrage randomCalculatedArbitrage() {
+	@GetMapping(value = "/randomFRAArbitrage", produces = MediaType.APPLICATION_JSON_VALUE)
+	public FRACalculatedArbitrage randomCalculatedArbitrage() {
 		try {
-			calculatedArbitrage = arbService.checkArbitrage(randomArbService.randomGeneration());
+			calculatedArbitrage = fraService.checkArbitrage(randomArbService.randomFRAGeneration());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		return calculatedArbitrage;
 	}
 }
-
-	
-	
 
 

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FXArbitrage {
-
+    private boolean mapping;
 	private double spot_bid;
 	private double spot_ask;
 	private double forward_bid;
@@ -20,9 +20,10 @@ public class FXArbitrage {
 	public FXArbitrage() {
 	};
 
-	public FXArbitrage(double spot_bid, double spot_ask, double forward_bid, double forward_ask,
+	public FXArbitrage(boolean mapping, double spot_bid, double spot_ask, double forward_bid, double forward_ask,
 			double interest_rate_curr1_bid, double interest_rate_curr1_ask, double interest_rate_curr2_bid,
 			double interest_rate_curr2_ask, double transaction_cost, double fwd_arb_quantity, double time_months) {
+		this.mapping = mapping;
 		this.spot_bid = spot_bid;
 		this.spot_ask = spot_ask;
 		this.forward_bid = forward_bid;
@@ -36,6 +37,14 @@ public class FXArbitrage {
 		this.time_months = time_months;
 	}
 
+	public boolean getMapping() {
+		return mapping;
+	}
+
+	public void setMapping(boolean value) {
+		this.mapping = value;
+	}
+	
 	public double getSpot_bid() {
 		return spot_bid;
 	}

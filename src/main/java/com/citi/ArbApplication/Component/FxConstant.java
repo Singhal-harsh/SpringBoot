@@ -7,7 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FxConstant {
-
+	
+	
 	private static final double spot_bid_range = 0.5;
 	private static final double spot_bid_min = 105.0;
 	private static final double forward_bid_range = 0.5;

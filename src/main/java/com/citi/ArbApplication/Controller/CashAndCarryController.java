@@ -32,14 +32,14 @@ public class CashAndCarryController {
 	@PostMapping(value = "/userCashArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<CashandCarryCalculatedArbitrage> calculateArbitrage(@RequestBody CashAndCarryArbitrage arbitrage){
-		calculatedArbitrage = cashAndCarryService.checkArbitrage(arbitrage);
+		calculatedArbitrage = cashAndCarryService.checkArbitrage(arbitrage, "Post");
 		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 		}
 	
 	@GetMapping(value = "/randomCashArbitrage", produces = MediaType.APPLICATION_JSON_VALUE)
 	public CashandCarryCalculatedArbitrage randomCalculatedArbitrage() {
 		try {
-			calculatedArbitrage = cashAndCarryService.checkArbitrage(randomArbService.randomCashGeneration());
+			calculatedArbitrage = cashAndCarryService.checkArbitrage(randomArbService.randomCashGeneration(), "Get");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@ public class ArbServiceImpl implements ArbService {
 
 	@Autowired
     public FXCalculatedArbitrage calculatedArbitrage;
-	private static int id = 1;
+	private static int id = 0;
 	private double fwd_arb_amount;
 	private double fwd_arb_invest_amount;
 	private double fwd_arb_invest_amount_Curr1;
@@ -48,13 +48,20 @@ public class ArbServiceImpl implements ArbService {
 
 		rev_arb_invest_amount = rev_arb_invest_amount_Curr2 / arb.getForward_ask();
 	}
+	
+	public void idGeneration() {
+		calculatedArbitrage.setId(++ArbServiceImpl.id);
+	}
 
 	@Override
 	public FXCalculatedArbitrage checkArbitrage(FXArbitrage arb) {
 		this.normalArbitrageCalc(arb);
 		this.reverseArbitrageCalc(arb);
+		if(arb.getMapping() == true) {
+			this.idGeneration();
+		}
 		
-		calculatedArbitrage.setId(ArbServiceImpl.id++);
+		
 		calculatedArbitrage.setFwd_arb_amount(fwd_arb_amount);
 		calculatedArbitrage.setFwd_arb_invest_amount_Curr1(fwd_arb_invest_amount_Curr1);
 		calculatedArbitrage.setFwd_arb_invest_amount(fwd_arb_invest_amount);

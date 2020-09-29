@@ -7,6 +7,6 @@ public interface CashAndCarryService {
 	
 	public void normalCashArbCalc(CashAndCarryArbitrage cashAndCarryArb);
 	public void reverseCashArbCalc(CashAndCarryArbitrage cashAndCarryArbitrage);
-	public CashandCarryCalculatedArbitrage checkArbitrage(CashAndCarryArbitrage cashAndCarryArbitrage);
+	public CashandCarryCalculatedArbitrage checkArbitrage(CashAndCarryArbitrage cashAndCarryArbitrage, String Mapping);
 
 }

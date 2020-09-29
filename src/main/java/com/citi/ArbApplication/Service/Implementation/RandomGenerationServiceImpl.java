@@ -6,56 +6,80 @@ import java.util.Random;
 import org.springframework.stereotype.Service;
 
 import com.citi.ArbApplication.Component.CashAndCarryConstant;
+import com.citi.ArbApplication.Component.FRAConstant;
 import com.citi.ArbApplication.Component.FxConstant;
+import com.citi.ArbApplication.Service.RandomGenerationService;
 
 @Service
-public class RandomGenerationServiceImpl {
+public class RandomGenerationServiceImpl implements RandomGenerationService {
 
+	@Override
 	public ArrayList<Object> randomFxGeneration() {
-		ArrayList<Object> arr = new ArrayList<Object>();
-		arr.add((Math.random() * FxConstant.getSpotBidRange()) + FxConstant.getSpotBidMin()); // spot_bid(1)
-		arr.add((Math.random() * FxConstant.getRange()) + (double) arr.get(0) + FxConstant.getMinval());// spot_ask(2)
-		arr.add((Math.random() * FxConstant.getForwardBidRange()) + FxConstant.getForwardBidMin());// forward_bid(3)
-		arr.add((Math.random() * FxConstant.getRange()) + (double) arr.get(2) + FxConstant.getMinval());// forward_ask(4)
-		arr.add((Math.random() * FxConstant.getInterestRateUsdBidRange()) + FxConstant.getInterestRateUsdBidMin());// interest_rate_usd_bid(5)
-		arr.add((Math.random() * FxConstant.getRange()) + (double) arr.get(4) + FxConstant.getMinval());// interest_rate_usd_ask(6)
-		arr.add((Math.random() * FxConstant.getInterestRateJpyBidRange()) + FxConstant.getInterestRateJpyBidMin());// interest_rate_jpy_bid(7)
-		arr.add((Math.random() * FxConstant.getRange()) + (double) arr.get(6) + FxConstant.getMinval());// interest_rate_jpy_ask(8)
+		ArrayList<Object> arrFX = new ArrayList<Object>();
+		arrFX.add((Math.random() * FxConstant.getSpotBidRange()) + FxConstant.getSpotBidMin()); // spot_bid(1)
+		arrFX.add((Math.random() * FxConstant.getRange()) + (double) arrFX.get(0) + FxConstant.getMinval());// spot_ask(2)
+		arrFX.add((Math.random() * FxConstant.getForwardBidRange()) + FxConstant.getForwardBidMin());// forward_bid(3)
+		arrFX.add((Math.random() * FxConstant.getRange()) + (double) arrFX.get(2) + FxConstant.getMinval());// forward_ask(4)
+		arrFX.add((Math.random() * FxConstant.getInterestRateUsdBidRange()) + FxConstant.getInterestRateUsdBidMin());// interest_rate_usd_bid(5)
+		arrFX.add((Math.random() * FxConstant.getRange()) + (double) arrFX.get(4) + FxConstant.getMinval());// interest_rate_usd_ask(6)
+		arrFX.add((Math.random() * FxConstant.getInterestRateJpyBidRange()) + FxConstant.getInterestRateJpyBidMin());// interest_rate_jpy_bid(7)
+		arrFX.add((Math.random() * FxConstant.getRange()) + (double) arrFX.get(6) + FxConstant.getMinval());// interest_rate_jpy_ask(8)
 
 
 		Random rand = new Random();
 		double fwd_arb_quantity = FxConstant.getfwdArbQuantityList().get((rand.nextInt(FxConstant.getfwdArbQuantityList().size())));
 		
-		arr.add(fwd_arb_quantity);// 9
+		arrFX.add(fwd_arb_quantity);// 9
 		
-		arr.add(((double) arr.get(8)) * (FxConstant.getTransactioncostpercent()));// transaction_cost(11)
+		arrFX.add(((double) arrFX.get(8)) * (FxConstant.getTransactioncostpercent()));// transaction_cost(11)
 		
 		double time_months = FxConstant.getTimeMonths().get((rand.nextInt(FxConstant.getTimeMonths().size())));
-		arr.add(time_months);
+		arrFX.add(time_months);
 
 	
-		return arr;
+		return arrFX;
 	}
 	
+	@Override
 	public ArrayList<Object> randomCashGeneration(){
-		ArrayList<Object> arr = new ArrayList<Object>();
+		ArrayList<Object> arrCash = new ArrayList<Object>();
 		
-		arr.add((Math.random() * CashAndCarryConstant.getSpotBidRange()) + CashAndCarryConstant.getSpotBidMin());
-		arr.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arr.get(0) + CashAndCarryConstant.getMinval());
-		arr.add((Math.random() * CashAndCarryConstant.getFutureBidRange()) + CashAndCarryConstant.getFutureBidMin());
-		arr.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arr.get(2) + CashAndCarryConstant.getMinval());
-		arr.add((Math.random() * CashAndCarryConstant.getInterestRateBidRange()) + CashAndCarryConstant.getInterestRateBidMin());
-		arr.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arr.get(4) + CashAndCarryConstant.getMinval());
+		arrCash.add((Math.random() * CashAndCarryConstant.getSpotBidRange()) + CashAndCarryConstant.getSpotBidMin());
+		arrCash.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arrCash.get(0) + CashAndCarryConstant.getMinval());
+		arrCash.add((Math.random() * CashAndCarryConstant.getFutureBidRange()) + CashAndCarryConstant.getFutureBidMin());
+		arrCash.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arrCash.get(2) + CashAndCarryConstant.getMinval());
+		arrCash.add((Math.random() * CashAndCarryConstant.getInterestRateBidRange()) + CashAndCarryConstant.getInterestRateBidMin());
+		arrCash.add((Math.random() * CashAndCarryConstant.getRange()) + (double) arrCash.get(4) + CashAndCarryConstant.getMinval());
 		
 		Random rand = new Random();
 		double future_arb_quantity = CashAndCarryConstant.getFutureArbQuantityList().get((rand.nextInt(CashAndCarryConstant.getFutureArbQuantityList().size())));
 		
-		arr.add(future_arb_quantity);
-		arr.add((CashAndCarryConstant.getTransactioncostpercent()));
+		arrCash.add(future_arb_quantity);
+		arrCash.add(CashAndCarryConstant.getTransactioncostpercent());
 		
 		double time_months = CashAndCarryConstant.getTimeMonths().get((rand.nextInt(CashAndCarryConstant.getTimeMonths().size())));
-		arr.add(time_months);
-		return arr;
+		arrCash.add(time_months);
+		return arrCash;
+	}
+	
+	@Override
+	public ArrayList<Object> randomFRAGeneration(){
+		ArrayList<Object> arrFRA = new ArrayList<Object>();
+		
+		arrFRA.add((Math.random() * FRAConstant.getInterest_rate1_bid_range()) + FRAConstant.getInterest_rate1_bid_min());
+		arrFRA.add((Math.random() * FRAConstant.getRange()) + (double) arrFRA.get(0) + FRAConstant.getMinVal());
+		arrFRA.add((Math.random() * FRAConstant.getInterest_rate2_bid_range()) + FRAConstant.getInterest_rate2_bid_min());
+		arrFRA.add((Math.random() * FRAConstant.getRange()) + (double) arrFRA.get(2) + FRAConstant.getMinVal());
+		arrFRA.add((Math.random() * FRAConstant.getFra_rate_bid_range()) + FRAConstant.getFra_rate_bid_min());
+		arrFRA.add((Math.random() * FRAConstant.getRange()) + (double) arrFRA.get(4) + FRAConstant.getMinVal());
+		
+		Random rand = new Random();
+		double notional_amount= FRAConstant.getNotionalAmountList().get((rand.nextInt(FRAConstant.getNotionalAmountList().size())));
+		
+		arrFRA.add(notional_amount);
+		arrFRA.add(((double) arrFRA.get(6)) * (FRAConstant.getTransaction_cost_percent()));
+		
+	    return arrFRA;
 	}
 	
 	

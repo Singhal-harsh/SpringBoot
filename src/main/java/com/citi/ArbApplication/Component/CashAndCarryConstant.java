@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CashAndCarryConstant {
 
-	private static final double spot_bid_range = 100;
-	private static final double spot_bid_min = 3050;
-	private static final double future_bid_range = 100;
-	private static final double future_bid_min = 3050;
-	private static final double interest_rate_bid_range = 0.5;
-	private static final double interest_rate_bid_min = 4.9;
+	private static final double spot_bid_range = 30; 
+	private static final double spot_bid_min = 3070; 
+	private static final double future_bid_range = 30;  
+	private static final double future_bid_min = 3100;
+	private static final double interest_rate_bid_range = 0.25;
+	private static final double interest_rate_bid_min = 3.9;
 	private static final double range = 0.15;
 	private static final double minVal = 0.01;
 	private static final double transactionCostPercent = 0.5;
@@ -24,9 +24,9 @@ public class CashAndCarryConstant {
 
 	public static List<Double> getFutureArbQuantityList() {
 
-		future_arb_quantity_list.add(500.0);
-		future_arb_quantity_list.add(1000.0);
-		future_arb_quantity_list.add(1500.0);
+		future_arb_quantity_list.add(100.0);
+		future_arb_quantity_list.add(200.0);
+		future_arb_quantity_list.add(300.0);
 		return future_arb_quantity_list;
 	}
 	
@@ -34,8 +34,8 @@ public class CashAndCarryConstant {
 	public static List<Double> getTimeMonths(){
 		
 		time_months.add((double) 3);
-		time_months.add((double) 6);
-		time_months.add((double) 12);
+		//time_months.add((double) 6);
+		//time_months.add((double) 12);
 		return time_months;
 	}
 
