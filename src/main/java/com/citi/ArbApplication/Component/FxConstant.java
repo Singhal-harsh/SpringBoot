@@ -9,17 +9,17 @@ import org.springframework.stereotype.Component;
 public class FxConstant {
 	
 	
-	private static final double spot_bid_range = 0.5;
-	private static final double spot_bid_min = 105.0;
-	private static final double forward_bid_range = 0.5;
-	private static final double forward_bid_min = 105.5;
-	private static final double interest_rate_usd_bid_range = 0.5;
-	private static final double interest_rate_usd_bid_min = 4.9;
-	private static final double interest_rate_jpy_bid_range = 0.1;
-	private static final double interest_rate_jpy_bid_min = 0.3;
-	private static final double range = 0.15;
+	private static final double spot_bid_range = 0.05;
+	private static final double spot_bid_min = 1.66;
+	private static final double forward_bid_range = 0.05;
+	private static final double forward_bid_min = 1.67;
+	private static final double interest_rate_usd_bid_range = 0.3;
+	private static final double interest_rate_usd_bid_min = 3.9;
+	private static final double interest_rate_jpy_bid_range = 0.4;
+	private static final double interest_rate_jpy_bid_min = 4.6;
+	private static final double range = 0.01;
 	private static final double minVal = 0.01;
-	private static final double transactionCostPercent = 0.025;
+	private static final double transactionCostPercent = 0.015;
 	
 	static List<Double> fwd_arb_quantity_list = new ArrayList<Double>();
 	public static List<Double> getfwdArbQuantityList(){
