@@ -14,15 +14,16 @@ public class FRACalculatedArbitrage {
 	private double rev_arb_invest_amount;
 	private boolean isFwdArbitrage;
 	private boolean isRevArbitrage;
+	private String date;
 	private FRAArbitrage arbitrage;
 
 	public FRACalculatedArbitrage() {
-		// super();
+		
 	}
 
 	public FRACalculatedArbitrage(int id, double fwd_arb_amount, double fwd_arb_invest_amount, double profit_loss_fwd,
 			double profit_loss_rev, double rev_arb_amount, double rev_arb_invest_amount, boolean isFwdArbitrage,
-			boolean isRevArbitrage, FRAArbitrage arbitrage) {
+			boolean isRevArbitrage, String date, FRAArbitrage arbitrage) {
 		super();
 		this.id = id;
 		this.fwd_arb_amount = fwd_arb_amount;
@@ -33,7 +34,17 @@ public class FRACalculatedArbitrage {
 		this.rev_arb_invest_amount = rev_arb_invest_amount;
 		this.isFwdArbitrage = isFwdArbitrage;
 		this.isRevArbitrage = isRevArbitrage;
+		this.date = date;
 		this.arbitrage = arbitrage;
+	}
+	
+	
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public int getId() {

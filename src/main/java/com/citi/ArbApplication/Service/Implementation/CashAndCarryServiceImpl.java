@@ -1,5 +1,9 @@
 package com.citi.ArbApplication.Service.Implementation;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 	private double profit_loss_fwd;
 	private double profit_loss_rev;
 	private double rev_arb_amount;
+	
 
 	@Override
 	public void normalCashArbCalc(CashAndCarryArbitrage cashAndCarryArb) {
@@ -47,8 +52,9 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 
 	
 	@Override
-	public CashandCarryCalculatedArbitrage checkArbitrage(CashAndCarryArbitrage cashAndCarryArbitrage, String Mapping) {
-		
+	public CashandCarryCalculatedArbitrage checkArbitrage(CashAndCarryArbitrage cashAndCarryArbitrage) {
+		    DateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
+		    Date date = new Date();
 			this.normalCashArbCalc(cashAndCarryArbitrage);
 			this.reverseCashArbCalc(cashAndCarryArbitrage);
 			if(cashAndCarryArbitrage.isMapping() == true) {
@@ -59,6 +65,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 			cashAndCarryCalculated.setRev_arb_amount(rev_arb_amount);
 			cashAndCarryCalculated.setProfit_loss_rev(profit_loss_rev);
 			cashAndCarryCalculated.setArbitrage(cashAndCarryArbitrage);
+			cashAndCarryCalculated.setDate(df.format(date));
 			
 			
 			if (cashAndCarryCalculated.getProfit_loss_fwd() > 0)

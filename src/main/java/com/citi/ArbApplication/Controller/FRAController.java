@@ -28,21 +28,21 @@ public class FRAController {
 	@Autowired
 	public RandomArbService randomArbService;
 	
-	@PostMapping(value = "/userFRAArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(value = "/user/fra", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FRACalculatedArbitrage> calculateArbitrage(@RequestBody FRAArbitrage arbitrage){
 		calculatedArbitrage = fraService.checkArbitrage(arbitrage);
 		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 		}
 	
-	@GetMapping(value = "/randomFRAArbitrage", produces = MediaType.APPLICATION_JSON_VALUE)
-	public FRACalculatedArbitrage randomCalculatedArbitrage() {
+	@GetMapping(value = "/random/fra", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<FRACalculatedArbitrage> randomCalculatedArbitrage() {
 		try {
 			calculatedArbitrage = fraService.checkArbitrage(randomArbService.randomFRAGeneration());
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+		 return new ResponseEntity<>(calculatedArbitrage, HttpStatus.INTERNAL_SERVER_ERROR);	
 		}
-		return calculatedArbitrage;
+		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 	}
 }
 

@@ -1,5 +1,9 @@
 package com.citi.ArbApplication.Service.Implementation;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,7 @@ public class FRAServiceImpl implements FRAService{
 	private double rev_arb_invest_amount;
 	private double profit_loss_fwd;
 	private double profit_loss_rev;
+	
 	
 	@Override
 	public void normalFRAArbCalc(FRAArbitrage fraArbitrage) {
@@ -53,6 +58,8 @@ public class FRAServiceImpl implements FRAService{
 	  @Override 
 	  public FRACalculatedArbitrage checkArbitrage(FRAArbitrage fraArbitrage){
 		  
+		  	DateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
+		    Date date = new Date();
 		  	this.normalFRAArbCalc(fraArbitrage);
 			this.reverseFRAArbCalc(fraArbitrage);
 			
@@ -69,6 +76,7 @@ public class FRAServiceImpl implements FRAService{
 			calculatedArbitrage.setProfit_loss_fwd(profit_loss_fwd);
 			calculatedArbitrage.setProfit_loss_rev(profit_loss_rev);
 			calculatedArbitrage.setArbitrage(fraArbitrage);
+			calculatedArbitrage.setDate(df.format(date));
 
 			if (profit_loss_fwd > 0) {
 				calculatedArbitrage.setFwdArbitrage(true);

@@ -28,21 +28,21 @@ public class FXController {
 	@Autowired
 	public RandomArbService randomArbService;
 	
-	@PostMapping(value = "/userFxArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(value = "/user/fx", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<FXCalculatedArbitrage> calculateArbitrage(@RequestBody FXArbitrage arbitrage){
 		calculatedArbitrage = arbService.checkArbitrage(arbitrage);
 		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 		}
 	
-	@GetMapping(value = "/randomFxArbitrage", produces = MediaType.APPLICATION_JSON_VALUE)
-	public FXCalculatedArbitrage randomCalculatedArbitrage() {
+	@GetMapping(value = "/random/fx", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<FXCalculatedArbitrage> randomCalculatedArbitrage() {
 		try {
 			calculatedArbitrage = arbService.checkArbitrage(randomArbService.randomGeneration());
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			return new ResponseEntity<>(calculatedArbitrage, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return calculatedArbitrage;
+		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 	}
 }
 

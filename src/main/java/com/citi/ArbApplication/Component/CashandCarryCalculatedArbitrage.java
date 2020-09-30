@@ -1,5 +1,7 @@
 package com.citi.ArbApplication.Component;
 
+
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,6 +14,7 @@ public class CashandCarryCalculatedArbitrage {
 	private double rev_arb_amount;
 	private boolean isFwdArbitrage;
 	private boolean isRevArbitrage;
+	private String date;
 	private CashAndCarryArbitrage arbitrage;
 
 	public CashandCarryCalculatedArbitrage() {
@@ -19,7 +22,7 @@ public class CashandCarryCalculatedArbitrage {
 	}
 
 	public CashandCarryCalculatedArbitrage(int id, double future_arb_amount, double profit_loss_fwd, double profit_loss_rev,
-			double rev_arb_amount, boolean isFwdArbitrage, boolean isRevArbitrage, CashAndCarryArbitrage arbitrage) {
+			double rev_arb_amount, boolean isFwdArbitrage, boolean isRevArbitrage, String date, CashAndCarryArbitrage arbitrage) {
 		this.id = id;
 		this.future_arb_amount = future_arb_amount;
 		this.profit_loss_fwd = profit_loss_fwd;
@@ -27,12 +30,21 @@ public class CashandCarryCalculatedArbitrage {
 		this.rev_arb_amount = rev_arb_amount;
 		this.isFwdArbitrage = isFwdArbitrage;
 		this.isRevArbitrage = isRevArbitrage;
+		this.date = date;
 		this.arbitrage = arbitrage;
 	}
 	
 	
 	public int getId() {
 		return id;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String string) {
+		this.date = string;
 	}
 
 	public void setId(int id) {

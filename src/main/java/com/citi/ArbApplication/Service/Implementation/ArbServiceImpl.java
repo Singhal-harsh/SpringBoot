@@ -1,6 +1,10 @@
 package com.citi.ArbApplication.Service.Implementation;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +59,8 @@ public class ArbServiceImpl implements ArbService {
 
 	@Override
 	public FXCalculatedArbitrage checkArbitrage(FXArbitrage arb) {
+		DateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
+	    Date date = new Date();
 		this.normalArbitrageCalc(arb);
 		this.reverseArbitrageCalc(arb);
 		if(arb.getMapping() == true) {
@@ -73,6 +79,7 @@ public class ArbServiceImpl implements ArbService {
 		calculatedArbitrage.setProfit_loss_fwd(profit_loss_fwd);
 		calculatedArbitrage.setProfit_loss_rev(profit_loss_rev);
 		calculatedArbitrage.setArbitrage(arb);
+		calculatedArbitrage.setDate(df.format(date));
 
 		if (profit_loss_fwd > 0) {
 			calculatedArbitrage.setFwdArbitrage(true);

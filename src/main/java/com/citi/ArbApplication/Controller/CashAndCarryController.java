@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.citi.ArbApplication.Component.CashAndCarryArbitrage;
 import com.citi.ArbApplication.Component.CashandCarryCalculatedArbitrage;
-import com.citi.ArbApplication.Component.FXArbitrage;
-import com.citi.ArbApplication.Component.FXCalculatedArbitrage;
-import com.citi.ArbApplication.Service.ArbService;
 import com.citi.ArbApplication.Service.CashAndCarryService;
 import com.citi.ArbApplication.Service.RandomArbService;
 
@@ -29,20 +26,20 @@ public class CashAndCarryController {
 	
 	@Autowired
 	public RandomArbService randomArbService;
-	@PostMapping(value = "/userCashArbitrage", consumes = MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(value = "/user/cash&carry", consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<CashandCarryCalculatedArbitrage> calculateArbitrage(@RequestBody CashAndCarryArbitrage arbitrage){
-		calculatedArbitrage = cashAndCarryService.checkArbitrage(arbitrage, "Post");
+		calculatedArbitrage = cashAndCarryService.checkArbitrage(arbitrage);
 		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 		}
 	
-	@GetMapping(value = "/randomCashArbitrage", produces = MediaType.APPLICATION_JSON_VALUE)
-	public CashandCarryCalculatedArbitrage randomCalculatedArbitrage() {
+	@GetMapping(value = "/random/cash&carry", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<CashandCarryCalculatedArbitrage> randomCalculatedArbitrage() {
 		try {
-			calculatedArbitrage = cashAndCarryService.checkArbitrage(randomArbService.randomCashGeneration(), "Get");
+			calculatedArbitrage = cashAndCarryService.checkArbitrage(randomArbService.randomCashGeneration());
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			new ResponseEntity<>(calculatedArbitrage, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return calculatedArbitrage;
+		return new ResponseEntity<>(calculatedArbitrage, HttpStatus.OK);
 	}
 }

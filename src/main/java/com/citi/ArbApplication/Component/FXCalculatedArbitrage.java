@@ -16,6 +16,7 @@ public class FXCalculatedArbitrage {
 	private double rev_arb_invest_amount_Curr2;
 	private boolean isFwdArbitrage;
 	private boolean isRevArbitrage;
+	private String date;
 	private FXArbitrage arbitrage;
 
 	public FXCalculatedArbitrage() {
@@ -25,7 +26,7 @@ public class FXCalculatedArbitrage {
 	public FXCalculatedArbitrage(int id, double fwd_arb_amount, double fwd_arb_invest_amount,
 			double fwd_arb_invest_amount_Curr1, double profit_loss_fwd, double profit_loss_rev, double rev_arb_amount,
 			double rev_arb_invest_amount, double rev_arb_invest_amount_Curr2, boolean isFwdArbitrage,
-			boolean isRevArbitrage, FXArbitrage arbitrage) {
+			boolean isRevArbitrage, String date, FXArbitrage arbitrage) {
 
 		this.id = id;
 		this.fwd_arb_amount = fwd_arb_amount;
@@ -38,8 +39,18 @@ public class FXCalculatedArbitrage {
 		this.rev_arb_invest_amount_Curr2 = rev_arb_invest_amount_Curr2;
 		this.isFwdArbitrage = isFwdArbitrage;
 		this.isRevArbitrage = isRevArbitrage;
+		this.date = date;
 		this.arbitrage = arbitrage;
 
+	}
+	
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public int getId() {
