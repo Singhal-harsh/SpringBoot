@@ -16,7 +16,7 @@ public class CashAndCarryConstant {
 	private static final double interest_rate_bid_min = 3.9;
 	private static final double range = 0.15;
 	private static final double minVal = 0.01;
-	private static final double transactionCostPercent = 0.5;
+	private static final double transactionCostPercent = 0.25;
 
 	
 
