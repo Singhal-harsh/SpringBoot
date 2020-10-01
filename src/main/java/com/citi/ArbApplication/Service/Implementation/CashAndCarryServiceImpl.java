@@ -28,7 +28,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 		future_arb_amount = cashAndCarryArb.getSpot_ask()
 				+ (cashAndCarryArb.getSpot_ask() * cashAndCarryArb.getInterest_rate_ask()
 						* (cashAndCarryArb.getTime_months() / 12) * 0.01)
-				+ ((cashAndCarryArb.getSpot_ask() + cashAndCarryArb.getFuture_ask())/2 * cashAndCarryArb.getTransaction_cost() * 0.01);
+				+ ((cashAndCarryArb.getSpot_ask() + cashAndCarryArb.getFuture_bid()) * cashAndCarryArb.getTransaction_cost() * 0.01);
 
 		profit_loss_fwd = (cashAndCarryArb.getFuture_bid() - future_arb_amount) * cashAndCarryArb.getQuantity();
 
@@ -41,7 +41,7 @@ public class CashAndCarryServiceImpl implements CashAndCarryService {
 		rev_arb_amount = cashAndCarryArb.getSpot_bid()
 				+ (cashAndCarryArb.getSpot_bid() * cashAndCarryArb.getInterest_rate_bid()
 						* (cashAndCarryArb.getTime_months() / 12) * 0.01)
-				- ((cashAndCarryArb.getSpot_ask()  + cashAndCarryArb.getFuture_ask())/2 * cashAndCarryArb.getTransaction_cost() * 0.01);
+				- ((cashAndCarryArb.getSpot_bid()  + cashAndCarryArb.getFuture_ask()) * cashAndCarryArb.getTransaction_cost() * 0.01);
 		profit_loss_rev = (rev_arb_amount - cashAndCarryArb.getFuture_ask()) * cashAndCarryArb.getQuantity();
 
 	}
